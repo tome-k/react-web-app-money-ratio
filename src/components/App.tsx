@@ -59,11 +59,7 @@ function App (): React.ReactElement {
           return;
         }
 
-        if (
-          ex instanceof TypeError
-          && ex.message === 'Failed to fetch'
-          && window.location.protocol === 'https:'
-        ) {
+        if (window.location.protocol === 'https:') {
           const err = Object.assign(new Error(), {
             name: 'MixedContentError',
             message: 'App must be served at a URL beginning with "http:"',
