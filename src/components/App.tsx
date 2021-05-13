@@ -34,6 +34,7 @@ function App (): React.ReactElement {
   const [rates, setRates] = useState<Rates>();
   const [symbols, setSymbols] = useState<Symbols>();
   const [convert, setConvert] = useState<Cashify['convert']>();
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     if (apiKey.length === 0) return;
@@ -51,11 +52,27 @@ function App (): React.ReactElement {
         setRates(rates);
       }
       catch (ex) {
+        console.error(ex);
+
         if (ex instanceof UnauthorizedError) {
           setApiKey('');
           return;
         }
-        console.error(ex);
+
+        if (
+          ex instanceof TypeError
+          && ex.message === 'Failed to fetch'
+          && window.location.protocol === 'https:'
+        ) {
+          const err = Object.assign(new Error(), {
+            name: 'MixedContentError',
+            message: 'App must be served at a URL beginning with "http:"',
+          });
+          setError(err);
+          return;
+        }
+
+        setError(ex);
       }
     })();
   }, [apiKey, symbolBase, symbols]);
@@ -73,6 +90,18 @@ function App (): React.ReactElement {
     setSymbolTarget(base);
   };
 
+  if (error) {
+    return (
+      <Template>
+        <div className={styles.message}>
+          <p>An error was encountered:</p>
+          <p>{error.name}: {error.message}</p>
+          <p>You can try reloading the app.</p>
+        </div>
+      </Template>
+    );
+  }
+
   if (apiKey.length === 0) {
     return (
       <Template>
@@ -84,7 +113,7 @@ function App (): React.ReactElement {
   if (!(rates && symbols && convert)) {
     return (
       <Template>
-        <div className={styles.loading}>Getting latest rates…</div>
+        <div className={styles.message}>Getting latest rates…</div>
       </Template>
     );
   }
