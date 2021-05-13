@@ -1,0 +1,15 @@
+.component {
+  text-align: center;
+}
+
+.block {
+  margin-top: 1rem;
+}
+
+.notice {
+  background-color: hsla(60, 90%, 50%, 0.2);
+  border-radius: 0.5rem;
+  color: var(--color-fg);
+  margin-bottom: 4rem;
+  padding: 1rem;
+}

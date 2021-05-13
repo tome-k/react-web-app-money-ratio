@@ -1,0 +1,17 @@
+.component {
+  background-color: var(--color-subtle-bg);
+  border-radius: 0.5rem;
+  /* display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem; */
+  text-align: center;
+  padding: 1rem;
+}
+
+/* @media screen and (min-width: 54rem) {
+  .component {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+  }
+} */

@@ -1,0 +1,57 @@
+body {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+  font-family: var(--font-sans);
+
+  --color-bg: hsla(0, 0%, 100%, 1);
+  --color-fg: hsla(0, 0%, 0%, 1);
+  --color-subtle-bg: hsla(0, 0%, 95%, 1);
+  --color-subtle-fg: hsla(0, 0%, 50%, 1);
+  --color-accent: hsla(340, 85%, 50%, 1);
+  --color-accent-contrast: var(--color-bg);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  padding: 0 1rem 1rem;
+}
+
+a {
+  color: hsla(215, 100%, 30%, 1);
+}
+
+code {
+  background-color: hsla(0, 0%, 0%, 0.08);
+  border-radius: 0.2em;
+  font-family: var(--font-mono);
+  padding: 0 0.2em;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 54rem) {
+  body {
+    padding: 0 2rem 2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {  
+    --color-bg: hsla(215, 5%, 10%, 1);
+    --color-fg: hsla(0, 0%, 100%, 1);
+    --color-subtle-bg: hsla(215, 5%, 25%, 1);
+    --color-subtle-fg: hsla(0, 0%, 70%, 1);
+    --color-accent: hsla(340, 85%, 50%, 1);
+    --color-accent-contrast: var(--color-fg);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  a {
+    color: hsla(215, 100%, 90%, 1);
+  }
+
+  code {
+    background-color: hsla(0, 0%, 100%, 0.15);
+  }
+}
